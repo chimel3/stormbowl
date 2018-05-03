@@ -1,0 +1,76 @@
+{
+    "stormbowl":
+    {
+        "teams": [
+        {
+            "name": "Wetland Raiders",
+            "controller": "human",
+            "players": []
+        },
+        {
+            "name": "Rakyr's Warriors",
+            "controller": "computer",
+            "players": []
+        },
+        {
+            "name": "Mason's Marauders",
+            "controller": "computer",
+            "players": [
+                "0ed577ba-5d76-4872-a9c8-4955a7969661",
+                "ffbfb560-b1d3-4317-9a33-94642de6133d"
+            ]
+        }],
+        "players": [
+        {
+            "uuid": "0ed577ba-5d76-4872-a9c8-4955a7969661",
+            "name": "Mason Elekar",
+            "race": "Human",
+            "movement": 4,
+            "attack": 4,
+            "defense": 3,
+            "strength": 3,
+            "toughness": 4,
+            "resilience": 4,
+            "throwing": 3,
+            "kicking": 3,
+            "agility": 3,
+            "catching": 3,
+            "availability": "available",
+            "recoverytime": 0,
+            "experience": 1000
+        },
+        {
+            "uuid": "ffbfb560-b1d3-4317-9a33-94642de6133d",
+            "name": "Jeremy Colt",
+            "race": "Human",
+            "movement": 4,
+            "attack": 4,
+            "defense": 3,
+            "strength": 3,
+            "toughness": 3,
+            "resilience": 3,
+            "throwing": 3,
+            "kicking": 3,
+            "agility": 3,
+            "catching": 3,
+            "availability": "available",
+            "recoverytime": 0,
+            "experience": 500
+        }],
+        "playernames":
+        {
+            "firstnames": [
+               "aaron", "adam", "adrian", "aiden", "alan", "albert", "alberto", "alex", "alexander", "alfred", "alfredo", "allan", "allen", "alvin", "andre", "andrew", "andy", "angel", "anthony", "antonio", "armando", "arnold", "arron", "art", "arthur", "austin", "barry", "ben", "benjamin", "bernard", "bill", "billy", "blake", "bob", "bobby", "brad", "bradley", "brandon", "brayden", "brennan", "brent", "brett", "brian", "bruce", "bryan", "byron", "caleb", "callum", "calvin", "cameron", "carl", "carlos", "carter", "cecil", "chad", "charles", "charlie", "chester", "chris", "christian", "christopher", "clarence", "claude", "clayton", "clifford", "clifton", "clinton", "clyde", "cody", "colin", "connor", "corey", "cory", "craig", "curtis", "dale", "dan", "daniel", "danny", "darrell", "darren", "darryl", "daryl", "dave", "david", "dean", "dennis", "derek", "derrick", "dick", "don", "donald", "douglas", "duane", "dustin", "dwayne", "dwight", "dylan", "earl", "ed", "eddie", "edgar", "eduardo", "edward", "edwin", "eli", "elijah", "elliot", "elmer", "enrique", "eric", "erik", "ernest", "ethan", "eugene", "evan", "everett", "felix", "fernando", "flenn", "floyd", "francis", "francisco", "frank", "frankie", "franklin", "fred", "freddie", "frederick", "gabe", "gabriel", "gary", "gavin", "gene", "george", "gerald", "gerry", "gilbert", "glen", "gordon", "greg", "gregory", "guy", "harold", "harry", "harvey", "hector", "henry", "herbert", "herman", "howard", "hugh", "hunter", "ian", "isaac", "isaiah", "ivan", "jack", "jackson", "jacob", "jake", "jakob", "james", "jamie", "jar", "jared", "jason", "javier", "jay", "jayden", "jeff", "jeffery", "jeffrey", "jeremiah", "jeremy", "jerome", "jerry", "jesse", "jessie", "jesus", "jim", "jimmie", "jimmy", "joe", "joel", "joey", "john", "johnni", "johnny", "jon", "jonathan", "jordan", "jorge", "jose", "josef", "joseph", "josh", "joshua", "juan", "julian", "julio", "justin", "karl", "keith", "kelly", "ken", "kenneth", "kent", "kevin", "kirk", "kurt", "kyle", "lance", "landon", "larry", "lawrence", "lee", "leo", "leon", "leonard", "leroy", "leslie", "lester", "levi", "lewis", "liam", "lloyd", "logan", "lonnie", "louis", "lucas", "lucas or luke", "luis", "luke", "manuel", "marc", "marcus", "mario", "marion", "mark", "marshall", "martin", "marvin", "mason", "mathew", "matt", "matthew", "maurice", "max", "maxwell", "melvin", "michael", "micheal", "miguel", "mike", "milton", "mitchell", "morris", "nathan", "nathaniel", "neil", "nelson", "nicholas", "nick", "noah", "nolan", "norman", "oscar", "owen", "pat", "patrick", "paul", "pedro", "perry", "peter", "phil", "philip", "phillip", "rafael", "ralph", "ramon", "randall", "randy", "raul", "ray", "raymond", "reginald", "rene", "ricardo", "rich", "richard", "rick", "ricky", "riley", "ritthy", "robert", "roberto", "rodney", "roger", "roland", "ron", "ronald", "ronnie", "ross", "roy", "ruben", "russell", "ryan", "salvador", "sam", "same", "sammy", "samuel", "scott", "sean", "sebastian", "sergio", "seth", "shane", "shaun", "shawn", "soham", "stanley", "stephen", "steve", "steven", "taylor", "ted", "terrance", "terrence", "terry", "theo", "theodore", "thomas", "tim", "timmothy", "timothy", "todd", "tom", "tommy", "tomothy", "tony", "tracy", "travis", "tristan", "troy", "tyler", "tyrone", "vernon", "victor", "vincent", "virgil", "wade", "wallace", "walter", "warren", "wayne", "wesley", "willard", "william", "willie", "wyatt", "zachary"
+            ],
+            "lastnames": [
+                "adams", "alexander", "allen", "alvarez", "anderson", "andrews", "armstrong", "arnold", "austin", "bailey", "baker", "banks", "barnes", "barnett", "barrett", "bates", "beck", "bell", "bennett", "berry", "bishop", "black", "bowman", "boyd", "bradley", "brewer", "brooks", "brown", "bryant", "burke", "burns", "burton", "butler", "byrd", "caldwell", "campbell", "carlson", "carpenter", "carr", "carroll", "carter", "castillo", "castro", "chambers", "chapman", "chavez", "clark", "clarke", "cole", "coleman", "collins", "cook", "cooper", "cox", "craig", "crawford", "cruz", "cunningham", "curtis", "daniels", "davidson", "davies", "davis", "day", "dean", "diaz", "dixon", "douglas", "duncan", "dunn", "edwards", "elliott", "ellis", "evans", "ferguson", "fernandez", "fields", "fisher", "fleming", "fletcher", "flores", "ford", "foster", "fowler", "fox", "franklin", "frazier", "freeman", "fuller", "garcia", "gardner", "garrett", "garza", "george", "gibson", "gilbert", "gomez", "gonzales", "gonzalez", "gordon", "graham", "grant", "graves", "gray", "green", "gregory", "griffin", "gutierrez", "hale", "hall", "hamilton", "hansen", "hanson", "harper", "harris", "harrison", "hart", "harvey", "hawkins", "hayes", "henderson", "henry", "hernandez", "herrera", "hicks", "hill", "hoffman", "holland", "holmes", "holt", "hopkins", "horton", "howard", "howell", "hudson", "hughes", "hunt", "hunter", "jackson", "jacobs", "james", "jenkins", "jennings", "jensen", "jimenez", "johnson", "johnston", "jones", "jordan", "kelley", "kelly", "kennedy", "kim", "king", "knight", "kuhn", "lambert", "lane", "larson", "lawrence", "lawson", "lee", "lewis", "little", "long", "lopez", "lord", "lowe", "lucas", "lynch", "macrae", "marshall", "martin", "martinez", "mason", "matthews", "may", "mccoy", "mcdonalid", "mckinney", "medina", "mendoza", "meyer", "miles", "miller", "mills", "mitchell", "mitchelle", "montgomery", "moore", "morales", "moreno", "morgan", "morris", "morrison", "murphy", "murray", "myers", "neal", "nelson", "newman", "nguyen", "nichols", "obrien", "oliver", "olson", "ortiz", "owens", "palmer", "parker", "patterson", "payne", "pearson", "pena", "perez", "perkins", "perry", "peters", "peterson", "phillips", "pierce", "porter", "powell", "price", "ramirez", "ramos", "ray", "reed", "reid", "reyes", "reynolds", "rhodes", "rice", "richards", "richardson", "riley", "rivera", "roberts", "robertson", "robinson", "rodriguez", "rodriquez", "rogers", "romero", "rose", "ross", "ruiz", "russell", "ryan", "sanchez", "sanders", "schmidt", "scott", "shaw", "shelton", "silva", "simmmons", "simmons", "simpson", "sims", "smith", "snyder", "soto", "spencer", "stanley", "stephens", "stevens", "steward", "stewart", "stone", "sullivan", "sutton", "taylor", "terry", "thomas", "thompson", "torres", "tucker", "turner", "vargas", "vasquez", "wade", "wagner", "walker", "wallace", "walters", "ward", "warren", "washington", "watkins", "watson", "watts", "weaver", "webb", "welch", "wells", "west", "wheeler", "white", "williams", "williamson", "willis", "wilson", "wood", "woods", "wright", "young"
+            ]
+        },
+        "settings":
+        {
+            "players_per_team": 15,
+            "bgcolour": "#9E332C",
+            "type": "single"
+        }
+    }
+}
