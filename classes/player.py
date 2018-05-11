@@ -101,6 +101,7 @@ class Human(Player):
     
     def __init__(self, attributes=None):
         self.race = self.player_race()
+        print("starting Human initialisation")
         if attributes != None:
             for attribute in attributes.keys():
                 setattr(self, attribute, attributes[attribute])

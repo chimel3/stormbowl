@@ -1,0 +1,80 @@
+stormbowl
+    Main()
+        - calls config.get_config_data
+        - calls config.start_game
+        - starts game.mainloop
+        
+    new_game()
+        - calls game.Game.set_game_type
+        - calls createclubs.create_clubs
+        - calls createplayers.create_players
+        - calls fixtures.create_fixture_list
+        - while config.game.inplay
+            - calls new_round
+            - calls game.Game.complete_round
+            
+    new_round()
+        - calls game.Game.get_fixtures_for_round and sorts them so human controlled game is last
+        - for each fixture
+            - creates a Match object
+            - if it's a human-controlled match:
+                - calls game.Game.switch_frame to display the MatchIntro screen
+                
+config
+    start_game()
+        creates a Game object
+        
+    get_config_data()
+        - reads JSON config file
+        
+    start_fixture_list()
+        - creates global fixtures lists
+        
+game.Game
+    __init__(tkinter tk)
+        - calls switch_frame to display the TitlePage
+        
+    switch_frame()
+        - destroys previous frame
+        - creates new one passed to it
+        
+    add_club()
+        - adds the club to the game
+        
+    add_player()
+        - adds the player to the game
+        
+    complete_round()
+        - increments the round number
+        - checks for end of game
+        
+    add_fixture()
+        - adds the fixture to the game
+        
+    get_fixtures_for_round()
+        - returns a list of fixtures to be played in the current round
+        
+createclubs
+    create_clubs()
+        - creates the Club objects
+        - calls game.Game.add_club
+        
+club.Club
+    __init__()
+        
+    add_player_to_club()
+        - adds the player to the club
+
+createplayers
+    create_players()
+        - creates any predefined players for this club of the relevant race
+        - create remaining random players as humans for now
+        
+player.Player
+    __init__()
+    
+fixtures
+    create_fixture_list
+        - gets all the clubs in config.game.clubs
+        - shuffles them
+        - calls game.Game.add_fixture for each fixture

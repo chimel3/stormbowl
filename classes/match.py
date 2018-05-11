@@ -1,13 +1,14 @@
 
-class Match(teams):
-    def __init__(self):
+class Match(object):
+    def __init__(self, teams):
+        print("starting Match initialisation")
         if [team for team in teams if not isinstance(team, str) if team.manager == "human"]:
             self.interactive_match = True
         else:
             self.interactive_match = False
             
-        self.hometeam = team[0]
-        self.awayteam = team[1]
+        self.hometeam = teams[0]
+        self.awayteam = teams[1]
         
         
     def isinteractive(self):

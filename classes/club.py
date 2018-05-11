@@ -6,6 +6,7 @@ class Club(object):
 
     def __init__(self, name, manager, pitchsize=(24,12)):
         '''Could have human name but can always implement later if need it'''
+        print("starting Club initialisation")
         self.name = name
         self.players = []
         self.pitchsize = pitchsize  # this is a future development to allow different sized pitches.

@@ -29,7 +29,7 @@ class TitlePage(tk.Frame):
     '''Title page frame where player selects game type'''
     def __init__(self, master):
         tk.Frame.__init__(self, master, bg='#9E332C')
-        
+        print("starting titlepage initialisation")
         title_label = tk.Label(self, width=15, height=2, bg='#9E332C', fg='white', text="Storm Bowl")
         title_label.config(font=("comic sans ms", 22, "bold"))
         title_label.pack()

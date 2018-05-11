@@ -6,6 +6,7 @@ import config
 import createclubs
 import createplayers
 import fixtures
+import time
 import classes.game
 import classes.match
 #import classes.screens
@@ -42,7 +43,10 @@ def main():
     config.get_config_data()
     config.start_game()
     print("entering mainloop")
-    config.game.mainloop()
+    '''
+    Note that the program enters mainloop but never exits out of it until the root window is closed. Events that are triggered will execute code but still within the mainloop run. Therefore if you are to pause on subsequent screens you need to create your own loop.
+    '''
+    #config.game.mainloop()
     print("ok I'm here")
     
 
@@ -52,7 +56,7 @@ def new_game(game_type):
     Check gametype and send the relevant number of clubs to create_clubs (sends to Game)
     create_players
     create_fixturelist'''
-    
+    print("starting new_game")
     # set the game type in the game object
     classes.game.Game.set_game_type(config.game, game_type)
     
@@ -69,9 +73,9 @@ def new_game(game_type):
         print("starting while loop")
         new_round(config.game.roundnum)
         
-        
+        config.game.inplay = False   # force this condition for testing
         # complete the round and check for end of game
-        classes.game.Game.complete_round(config.game)
+        #classes.game.Game.complete_round(config.game)
         
     
 
@@ -117,6 +121,7 @@ def new_round(roundnum):
     
 
     '''
+    print("starting new_round")
     # Get the list of fixtures for this round
     fixtures_for_round = classes.game.Game.get_fixtures_for_round(config.game, roundnum)
     
@@ -125,9 +130,22 @@ def new_round(roundnum):
     
     # play each match in turn
     for fixture in fixtures_for_round:
+        # Create the match object
         match = classes.match.Match(fixture)
         if classes.match.Match.isinteractive(match):
-            classes.game.Game.switch_frame(classes.matchintroframe.MatchIntro(fixture))
+            # pass name of frame as a string with separate argument list. Otherwise it will evaluate whether all of the parameters are satisfied to call the class's initiator at this stage.
+            argument_list = []
+            argument_list.append(fixture)
+            # show the introduction to match screen
+            classes.game.Game.switch_frame(config.game, 'classes.matchintroframe.MatchIntro', argument_list)
+        
+
+        config.game.update()
+        
+        # pick the squads for both home and away teams
+        for team in fixture:
+            pick_squad(team)
+            
     
     # call the next screen
     
@@ -145,7 +163,7 @@ def new_round(roundnum):
 
     
 
-class Match(object):
+class falseMatch(object):
     '''
     USING TAGS:
     Here is a list of the ways I want to use tags on create_image:
@@ -255,7 +273,8 @@ def pick_squad (club):
     
     Need to think about how to distinguish between what a human player does and a computer player
     '''
-    pass
+    print("starting pick_squad")
+    print(club.manager)
     
 class Ball(object):
     '''

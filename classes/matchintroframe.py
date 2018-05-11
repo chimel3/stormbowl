@@ -1,12 +1,14 @@
-import  tkinter as tk
+import tkinter as tk
+import time
 
 class MatchIntro(tk.Frame):
     '''Introduces the match, showing information about the next match'''
     def __init__(self, master, teams):
         tk.Frame.__init__(self, master, bg='#9E332C')
-        
-        self.hometeam = teams[0]
-        self.awayteam = teams[1]
+        print("starting MatchIntro initialisation")
+        # teams is passed through as a list within a single element list. The team will either be a club object or the string "DayOff".
+        self.hometeam = teams[0][0]
+        self.awayteam = teams[0][1]
         
         # populate variables depending on whether this is a single game or league
         if config.game.gametype == 'single':
@@ -25,15 +27,16 @@ class MatchIntro(tk.Frame):
         round_label = tk.Label(self, bg='#9E332C', fg='white', text=roundtext, font=("Arial", 16, "bold"))
         
         # Print the names of the clubs playing this match
-        hometeam_label = tk.Label(self, bg='#9E332C', fg='white', text=self.hometeam, font=("Arial", 22))
-        awayteam_label = tk.Label(self, bg='#9E332C', fg='white', text=self.awayteam, font=("Arial", 22))
+        hometeam_label = tk.Label(self, bg='#9E332C', fg='white', text=self.hometeam.name, font=("Arial", 22))
+        awayteam_label = tk.Label(self, bg='#9E332C', fg='white', text=self.awayteam.name, font=("Arial", 22))
+        versus_label = tk.Label(self, bg='#9E332C', fg='white', text="vs", font=("Arial", 22))
         
         # Print the positions in the league of the two clubs
         hometeam_position_label = tk.Label(self, bg='#9E332C', fg='white', text=hometeam_leagueposition)
         awayteam_position_label = tk.Label(self, bg = '#9E332C', fg='white', text=awayteam_leagueposition)
         
         # Create the OK button to move us to the next screen
-        ok_button = tk.Button(self, highlightbackground='#9E332C', text="Continue", pady=20, command=lambda: classes.game.Game.switch_frame(classes.picksquad.PickSquad))
+        ok_button = tk.Button(self, highlightbackground='#9E332C', text="Continue", pady=20, command=MatchIntro.donothing)
 
         # Set the window size
         classes.game.Game.set_window_size(master, "550x200")
@@ -42,10 +45,31 @@ class MatchIntro(tk.Frame):
         round_label.grid(row=1, column=1)
         hometeam_label.grid(row=2, column=0)
         awayteam_label.grid(row=2, column=2)
+        versus_label.grid(row=2, column=1)
         hometeam_position_label.grid(row=3, column=0)
         awayteam_position_label.grid(row=3, column=2)
         ok_button.grid(row=4, column=1)
- 
+        wait = True
+        self.update_idletasks()
+        master.update_idletasks()
+        ok_button.update_idletasks()
+        #self.after(1000, print("updating..."))
+        self.after(0, self.dosomething)
+        
+        '''
+        timeout = time.time() + 10
+        while wait is True:
+            time.sleep(2)
+            if time.time() > timeout:
+                break
+        '''
+        
+    def donothing():
+        MatchIntro.wait = False
+        
+    def dosomething(self):
+        self.update_idletasks()
+        
         
 import stormbowl
 import config

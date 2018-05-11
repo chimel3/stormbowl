@@ -9,6 +9,7 @@ def create_clubs(number):
     Whether it is human or computer controlled is in the config file
 
     '''
+    print("starting create_clubs")
     #teams_data = json.load(open('stormbowl-config.json'))['stormbowl']['teams']
     
     # check that there are enough teams in the config file

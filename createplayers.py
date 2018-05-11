@@ -38,7 +38,7 @@ def create_players():
     return players
         
     '''
-    
+    print("starting create_players")
     # iterate through the clubs attribute of game object
     for club in config.game.clubs:
         # get just the team from the config file that relates to this club

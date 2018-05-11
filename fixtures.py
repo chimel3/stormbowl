@@ -11,14 +11,14 @@ def create_fixture_list():
     IDEAS:
     
     '''
-    
+    print("starting create_fixture_list")
     # Create a new list to hold the clubs. Whilst I could just use the list of clubs held in the game, this wouldn't work where the total number of clubs is an odd number as I then have to create a "DayOff" club.
     clublist = config.game.clubs
     if len(clublist) % 2:
         clublist.append("DayOff")
         
     # set the number of fixtures per round
-    classes.game.Game.fixtures_per_round(config.game, len(clublist)/2)
+    classes.game.Game.fixtures_per_round(config.game, int(len(clublist)/2)) # this is cast to an int because otherwise it automatically becomes a float and the for loop in get_fixtures_for_round fails
         
     # shuffle clublist to get some randomness in there to the schedule.
     random.shuffle(clublist)

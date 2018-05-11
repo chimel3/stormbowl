@@ -1,15 +1,17 @@
 import  tkinter as tk
 import classes.titleframe
+import classes.matchintroframe
 
 class Game(tk.Tk):    
     '''Creates an instance of Tk and sets basic configuration before switching to the title page'''
     def __init__(self):
+        print("starting Game initialisation")
         tk.Tk.__init__(self)
         self.title("Storm Bowl")
         self.configure(background='#9E332C')
         self.inplay = self.game_started()
         self.roundnum = 1
-        self.switch_frame(classes.titleframe.TitlePage)
+        self.switch_frame('classes.titleframe.TitlePage')
         self.clubs = []
         self.players = []
         self.fixtures = []
@@ -23,9 +25,20 @@ class Game(tk.Tk):
         '''Set the game to finished'''
         return False
     
-    def switch_frame(self, frame_class):
-        '''Destroy current frame and replace with new one'''
-        new_frame = frame_class(self, *args)
+    def switch_frame(self, frame_class, params=None):
+        '''
+        Destroy current frame and replace with new one.
+        frame_class to be passed as a string as otherwise the calling code will attempt to evaluate conformity with the parameters defined in the __init__ of the class we call. This will not work when it requires more than self and master.
+        Any *args passed through MUST BE a single list type which can then contain all of the arguments.
+        '''
+        print("starting switch_frame")
+        # open up the new frame with or without additional arguments     
+        if params is None:
+            new_frame = eval(frame_class)(self)
+        else:
+            new_frame = eval(frame_class)(self, params)
+        
+        # destroy any existing frame
         if hasattr(self, "_frame"):
             self._frame.destroy()
         self._frame = new_frame
