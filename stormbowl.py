@@ -1,62 +1,29 @@
-#import  tkinter as tk
-import json
-#import classes.screens
-#import classes.game
 import config
 import createclubs
 import createplayers
 import fixtures
-import time
 import classes.game
 import classes.match
-#import classes.screens
-# will need to import config file with constants
+import autopick
+
 
 def main():
     '''
-    ABOUT:
-    Read in config variables. Holds things like the default team and player names
-    Create root window.
-    Create frame.
-    create buttons in frame to hold key initial choices.
-    
-    ### the clubs and players are critical to the game so can't create these in the previously planned new_game function as otherwise I'd have to pass them back to Main so it knew about them. But then because both are created in new_game I'd have to pass a very messy list of lists or similar back with both players and clubs in it. ####
-    Will need an if block for a season game so can set up club finances etc.
-    Call create_clubs(clubs)
-    Call create players(gametype, clubs, race)  - this feels weak as all players are same race with this. Feel this needs to be able to come from config files.
-    Call fixturelist = create_fixture_list(clubs)
-    
-    while not end of game:
-        new_round(fixturelist, roundnum)   # on basis that each round has matches between all teams
+    This is the function that is returned to after each set of processing has completed as this is where the tkinter mainloop funtion is called.
     '''
-    
-    '''
-    IDEAS:
-    '''
-    # Read configuration file to get a blob of all of the configuration for the game
-    #config_data = json.load(open('stormbowl-config.json'))
-    
-    # create the initial Tkinter Tk object that will be used to house the various frames (pages), passing it the background colour
-    #game = classes.game.Game()
-    #master = MasterWindow()
     
     config.get_config_data()
     config.start_game()
-    print("entering mainloop")
     '''
     Note that the program enters mainloop but never exits out of it until the root window is closed. Events that are triggered will execute code but still within the mainloop run. Therefore if you are to pause on subsequent screens you need to create your own loop.
     '''
-    #config.game.mainloop()
-    print("ok I'm here")
+    print("entering mainloop")
+    config.game.mainloop()
     
 
 def new_game(game_type):
     '''Create the necessary objects to be able to start a new game of the required type'''
-    '''ABOUT
-    Check gametype and send the relevant number of clubs to create_clubs (sends to Game)
-    create_players
-    create_fixturelist'''
-    print("starting new_game")
+    
     # set the game type in the game object
     classes.game.Game.set_game_type(config.game, game_type)
     
@@ -70,7 +37,7 @@ def new_game(game_type):
     fixtures.create_fixture_list()
     
     while config.game.inplay:  # change this to a for loop using rounds variable
-        print("starting while loop")
+        print("starting in-play loop")
         new_round(config.game.roundnum)
         
         config.game.inplay = False   # force this condition for testing
@@ -116,11 +83,8 @@ def new_round(roundnum):
     -->
     For computer players:
     Pick at random.
-    
-    
-    
-
     '''
+    
     print("starting new_round")
     # Get the list of fixtures for this round
     fixtures_for_round = classes.game.Game.get_fixtures_for_round(config.game, roundnum)
@@ -138,13 +102,16 @@ def new_round(roundnum):
             argument_list.append(fixture)
             # show the introduction to match screen
             classes.game.Game.switch_frame(config.game, 'classes.matchintroframe.MatchIntro', argument_list)
-        
+            
+            # enter into the loop to pause the screen until the user takes action on the present screen
+            while config.game.paused:
+                config.game.update()
 
-        config.game.update()
-        
         # pick the squads for both home and away teams
-        for team in fixture:
-            pick_squad(team)
+        if match.hometeam.manager == "computer":
+            autopick.autopick_players(match.hometeam)
+        else:
+            pass
             
     
     # call the next screen

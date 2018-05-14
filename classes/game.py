@@ -10,6 +10,7 @@ class Game(tk.Tk):
         self.title("Storm Bowl")
         self.configure(background='#9E332C')
         self.inplay = self.game_started()
+        self.pause_game()
         self.roundnum = 1
         self.switch_frame('classes.titleframe.TitlePage')
         self.clubs = []
@@ -17,6 +18,14 @@ class Game(tk.Tk):
         self.fixtures = []
         self.returnfixtures = []
      
+    def pause_game(self):
+        print("game paused")
+        self.paused = True
+    
+    def restart_game(self):
+        print("game restarted")
+        self.paused = False
+    
     def game_started(self):
         '''Set the game to started'''
         return True

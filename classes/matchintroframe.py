@@ -6,7 +6,11 @@ class MatchIntro(tk.Frame):
     def __init__(self, master, teams):
         tk.Frame.__init__(self, master, bg='#9E332C')
         print("starting MatchIntro initialisation")
+        self.create_things(master, teams)
+        #self.updater()
         # teams is passed through as a list within a single element list. The team will either be a club object or the string "DayOff".
+        
+    def create_things(self, master, teams):
         self.hometeam = teams[0][0]
         self.awayteam = teams[0][1]
         
@@ -36,7 +40,7 @@ class MatchIntro(tk.Frame):
         awayteam_position_label = tk.Label(self, bg = '#9E332C', fg='white', text=awayteam_leagueposition)
         
         # Create the OK button to move us to the next screen
-        ok_button = tk.Button(self, highlightbackground='#9E332C', text="Continue", pady=20, command=MatchIntro.donothing)
+        ok_button = tk.Button(self, highlightbackground='#9E332C', text="Continue", pady=20, command=lambda : classes.game.Game.restart_game(config.game))
 
         # Set the window size
         classes.game.Game.set_window_size(master, "550x200")
@@ -49,20 +53,11 @@ class MatchIntro(tk.Frame):
         hometeam_position_label.grid(row=3, column=0)
         awayteam_position_label.grid(row=3, column=2)
         ok_button.grid(row=4, column=1)
-        wait = True
-        self.update_idletasks()
-        master.update_idletasks()
-        ok_button.update_idletasks()
-        #self.after(1000, print("updating..."))
-        self.after(0, self.dosomething)
         
-        '''
-        timeout = time.time() + 10
-        while wait is True:
-            time.sleep(2)
-            if time.time() > timeout:
-                break
-        '''
+    def updater(self):
+        print("updater...")
+        self.update()
+        self.after(1000, self.updater)
         
     def donothing():
         MatchIntro.wait = False
