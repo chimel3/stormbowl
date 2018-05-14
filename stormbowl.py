@@ -4,6 +4,7 @@ import createplayers
 import fixtures
 import classes.game
 import classes.match
+import classes.squadselector
 import autopick
 
 
@@ -42,6 +43,7 @@ def new_game(game_type):
         
         config.game.inplay = False   # force this condition for testing
         # complete the round and check for end of game
+        # at end of round, set playingstatus to none throughout.
         #classes.game.Game.complete_round(config.game)
         
     
@@ -72,17 +74,7 @@ def new_round(roundnum):
     League position to come later...
     
     ---------
-    Pick squads
-    -->
-    If <= 15, all players are highlighted by default. If not, ideally keep squad same as last match as a default.
-    Load frame to show the match details at the top, with the list of players (and hopefully their attributes). Each player is black text on white. You then click to add them to the squad (white text on black). Unavailable players are red writing on white.
-    When complete, check number of selected.
-    If < 15, warn that fewer than 15 in squad and OK to continue.
-    If > 15, warn that too many in squad, disabled the OK.
-    If 15, continue.
-    -->
-    For computer players:
-    Pick at random.
+
     '''
     
     print("starting new_round")
@@ -107,12 +99,18 @@ def new_round(roundnum):
             while config.game.paused:
                 config.game.update()
 
+        '''
         # pick the squads for both home and away teams
         if match.hometeam.manager == "computer":
             autopick.autopick_players(match.hometeam)
         else:
-            pass
+            classes.squadselector.PickSquad(match.hometeam)
             
+        if match.awayteam.manager == "computer":
+            autopick.autopick_players(match.awayteam)
+        else:
+            classes.squadselector.PickSquad(match.awayteam)
+        '''    
     
     # call the next screen
     
