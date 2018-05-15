@@ -1,7 +1,7 @@
 import tkinter as tk
 
 class PickSquad(tk.Frame):
-    def __init__(self, master, team):
+    def __init__(self, master, club):
         
         '''    
         Pick squads
@@ -16,4 +16,32 @@ class PickSquad(tk.Frame):
         For computer players:
         Pick at random.
         '''
-        pass
+        tk.Frame.__init__(self, master, bg='#9E332C')
+        print("starting PickSquad initialisation")
+
+        # the team is currently contained in a list, so let's get it out of that as it's awkward to deal with
+        club = club[0]
+
+                # Set the window size
+        classes.game.Game.set_window_size(master, "500x600")
+
+        # Create the scrollbar
+        scrollbar = tk.Scrollbar(self)
+        scrollbar.pack( side = 'right', fill = 'y' )
+
+        # Get a list of eligible players for the club
+        player_list = tk.Listbox(self, yscrollcommand = scrollbar.set )
+        for player in club.players:
+            if player.availability == 'available':
+                player_list.insert('end', player.name)
+
+        player_list.pack( side = 'left', fill = 'both' )
+        scrollbar.config( command = player_list.yview )
+
+        #ok_button = tk.Button(self, highlightbackground='#9E332C', text="Continue", pady=20, command=lambda : classes.game.Game.restart_game(config.game))
+
+        
+import classes.game
+
+
+

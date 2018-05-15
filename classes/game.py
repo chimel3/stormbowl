@@ -1,6 +1,7 @@
 import  tkinter as tk
 import classes.titleframe
 import classes.matchintroframe
+import classes.squadselector
 
 class Game(tk.Tk):    
     '''Creates an instance of Tk and sets basic configuration before switching to the title page'''

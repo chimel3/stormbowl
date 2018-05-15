@@ -99,18 +99,22 @@ def new_round(roundnum):
             while config.game.paused:
                 config.game.update()
 
-        '''
+        
         # pick the squads for both home and away teams
         if match.hometeam.manager == "computer":
             autopick.autopick_players(match.hometeam)
         else:
-            classes.squadselector.PickSquad(match.hometeam)
+            argument_list = []
+            argument_list.append(match.hometeam)
+            classes.game.Game.switch_frame(config.game, 'classes.squadselector.PickSquad', argument_list)
             
         if match.awayteam.manager == "computer":
             autopick.autopick_players(match.awayteam)
         else:
-            classes.squadselector.PickSquad(match.awayteam)
-        '''    
+            argument_list = []
+            argument_list.append(match.hometeam)
+            classes.game.Game.switch_frame(config.game, 'classes.squadselector.PickSquad', argument_list)
+            
     
     # call the next screen
     
@@ -223,23 +227,6 @@ def set_character_images(teamType, team):
     '''
     pass
     
-def pick_squad (club):
-    '''
-    ABOUT:
-    This should open up a screen where it allows the player to select 15 players from their complete list to participate in the next match.
-    
-    If there are 15 or fewer eligible players (that is non-injured players) then no need to show the screen.
-    '''
-    
-    '''
-    IDEAS:
-    When select squad, set PlayingStatus to "squad" for those selected.
-    Use Availability attribute to decide which are eligible players.
-    
-    Need to think about how to distinguish between what a human player does and a computer player
-    '''
-    print("starting pick_squad")
-    print(club.manager)
     
 class Ball(object):
     '''
