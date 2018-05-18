@@ -71,6 +71,23 @@
             "players_per_team": 15,
             "bgcolour": "#9E332C",
             "type": "single"
+        },
+        "board":
+        {
+            "colours":
+            {
+                "pitch": ["#32c032", "#1eab1e", "#3cc83c", "#3c961e", "#0abc22"],
+                "endzone": "#8c7373",
+                "outofbounds": "#e6e6e6",
+                "outline": "#566573"
+            },
+            "activefillcolours":
+            {
+                "pitch": "green",
+                "endzone": "grey",
+                "outofbounds": "white"
+            },
+            "boardspacesize": 16
         }
     }
 }

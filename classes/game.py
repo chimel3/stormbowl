@@ -53,6 +53,9 @@ class Game(tk.Tk):
         self._frame = new_frame
         self._frame.pack()
         
+        # return new_frame value in case calling function needs this
+        return new_frame
+        
     def set_window_size(self, size):
         self.geometry(size)
         

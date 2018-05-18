@@ -112,7 +112,8 @@ def new_round(roundnum):
             classes.squadselector.PickSquad(match.awayteam)
         '''    
     
-    # call the next screen
+        # Play the match
+        match.play_match(fixture)
     
     '''
     New function to create_match. This is where we pick squads etc.
