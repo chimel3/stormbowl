@@ -30,13 +30,13 @@ class PickSquad(tk.Frame):
         scrollbar.pack( side = 'right', fill = 'y' )
 
         # Get a list of eligible players for the club
-        player_list = tk.Listbox(self, yscrollcommand = scrollbar.set )
+        player_name_list = tk.Listbox(self, yscrollcommand = scrollbar.set )
         for player in club.players:
             if player.availability == 'available':
-                player_list.insert('end', player.name)
+                player_name_list.insert('end', player.name)
 
-        player_list.pack( side = 'left', fill = 'both' )
-        scrollbar.config( command = player_list.yview )
+        player_name_list.pack( side = 'left', fill = 'both' )
+        scrollbar.config( command = player_name_list.yview )
 
         #ok_button = tk.Button(self, highlightbackground='#9E332C', text="Continue", pady=20, command=lambda : classes.game.Game.restart_game(config.game))
 
