@@ -53,7 +53,8 @@ class PickSquad(tk.Frame):
         for player in club.players:
             if player.availability == 'available':
                 #player_tree.insert(' ', 'end', text=player.name, values=(player.movement, player.attack, player.defense, player.strength, player.toughness, player.resilience, player.throwing, player.kicking, player.agility, player.catching))
-                player_tree.insert("", 'end', text=player.name, values=(4, 3, 3, 4, 3, 7, 8, 9, 7, 10))
+                player_tree.insert("", 'end', text=player.name, values=(4, 3, 3, 4, 3, 7, 8, 9, 7, 10), tags=("deselected"))
+                player_tree.tag_configure("deselected", background="white")
 
         player_tree.pack()
         '''
