@@ -11,7 +11,7 @@ class Game(tk.Tk):
         self.title("Storm Bowl")
         self.configure(background='#9E332C')
         self.inplay = self.game_started()
-        self.pause_game()
+        self.continue_game()
         self.roundnum = 1
         self.switch_frame('classes.titleframe.TitlePage')
         self.clubs = []
@@ -23,7 +23,7 @@ class Game(tk.Tk):
         print("game paused")
         self.paused = True
     
-    def restart_game(self):
+    def continue_game(self):
         print("game restarted")
         self.paused = False
     
@@ -70,6 +70,9 @@ class Game(tk.Tk):
     def add_player(self, player):
         self.players.append(player)
         #print("adding player to game: " + str(player.name))
+
+    def update_player_playing_status(self, player_uuid, new_status):
+        thisplayer = next(player )
         
     def complete_round(self):
         self.roundnum += 1

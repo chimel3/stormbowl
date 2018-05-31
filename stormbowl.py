@@ -6,6 +6,7 @@ import classes.game
 import classes.match
 import classes.squadselector
 import autopick
+import time
 
 
 def main():
@@ -99,15 +100,26 @@ def new_round(roundnum):
             while config.game.paused:
                 config.game.update()
 
-        
+            
         # pick the squads for both home and away teams
+        print("picking squads")
         if match.hometeam.manager == "computer":
             autopick.autopick_players(match.hometeam)
         else:
             argument_list = []
             argument_list.append(match.hometeam)
             classes.game.Game.switch_frame(config.game, 'classes.squadselector.PickSquad', argument_list)
+            time.sleep(1) # hard to explain this but without it, paused occasionally evaluates to false incorrectly
+            '''
+            Seem to have a problem whereby paued is not evaluated correctly. May be due to the speed of teh Vm but need to do some more testing
+            '''
+            #print("game status at 1 is " + str(config.game.paused))
+            while config.game.paused:
+                config.game.update()
+
+            #print("game status at 2 is " + str(config.game.paused))
             
+        #print("game status at 3 is " + str(config.game.paused))        
         if match.awayteam.manager == "computer":
             autopick.autopick_players(match.awayteam)
         else:
@@ -116,8 +128,8 @@ def new_round(roundnum):
             classes.game.Game.switch_frame(config.game, 'classes.squadselector.PickSquad', argument_list)
             
     
-    # call the next screen
-    
+        # call the next screen
+        print("onto next screen")
     '''
     New function to create_match. This is where we pick squads etc.
     Suggest that have a match class.

@@ -7,6 +7,10 @@ class MatchIntro(tk.Frame):
         tk.Frame.__init__(self, master, bg='#9E332C')
         print("starting MatchIntro initialisation")
         self.create_things(master, teams)
+
+        # pause game
+        config.game.pause_game()
+
         #self.updater()
         # teams is passed through as a list within a single element list. The team will either be a club object or the string "DayOff".
         
@@ -40,7 +44,7 @@ class MatchIntro(tk.Frame):
         awayteam_position_label = tk.Label(self, bg = '#9E332C', fg='white', text=awayteam_leagueposition)
         
         # Create the OK button to move us to the next screen
-        ok_button = tk.Button(self, highlightbackground='#9E332C', text="Continue", pady=20, command=lambda : classes.game.Game.restart_game(config.game))
+        ok_button = tk.Button(self, highlightbackground='#9E332C', text="Continue", pady=20, command=lambda : classes.game.Game.continue_game(config.game))
 
         # Set the window size
         classes.game.Game.set_window_size(master, "550x200")

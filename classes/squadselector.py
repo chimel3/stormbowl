@@ -1,37 +1,31 @@
 import tkinter as tk
 import operator
 from tkinter import ttk
+from tkinter import messagebox
 
 class PickSquad(tk.Frame):
     def __init__(self, master, club):
         
-        '''    
-        Pick squads
-        -->
-        If <= 15, all players are highlighted by default. If not, ideally keep squad same as last match as a default.
-        Load frame to show the match details at the top, with the list of players (and hopefully their attributes). Each player is black text on white. You then click to add them to the squad (white text on black). Unavailable players are red writing on white.
-        When complete, check number of selected.
-        If < 15, warn that fewer than 15 in squad and OK to continue.
-        If > 15, warn that too many in squad, disabled the OK.
-        If 15, continue.
-        -->
-        For computer players:
-        Pick at random.
-        '''
         tk.Frame.__init__(self, master, bg='#9E332C')
         print("starting PickSquad initialisation")
+
+        # pause game
+        config.game.pause_game()
 
         # the team is currently contained in a list, so let's get it out of that as it's awkward to deal with
         club = club[0]
 
-                # Set the window size
-        classes.game.Game.set_window_size(master, "600x500")
+        # Set the window size
+        classes.game.Game.set_window_size(master, "600x400")
 
          # main title
         title_label = tk.Label(self, bg='#9E332C', fg='white', text='Pick Squad', font=("Arial", 20, "bold"), pady=10)
         title_label.grid(row=0, column=1)
-        
+
+        # create the treeview and scrollbar        
         self.player_tree = ttk.Treeview(self)
+        self.scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.player_tree.yview)
+
         self.player_tree["columns"] = ('movement', 'attack', 'defense', 'strength', 'toughness', 'resilience', 'throwing', 'kicking', 'agility', 'catching')
         self.player_tree.heading('#0', text="Name")
         self.player_tree.column("movement", width=35)
@@ -56,11 +50,13 @@ class PickSquad(tk.Frame):
         self.player_tree.heading("catching", text="CAT")
         for player in club.players:
             if player.availability == 'available':
-                #player_tree.insert(' ', 'end', text=player.name, values=(player.movement, player.attack, player.defense, player.strength, player.toughness, player.resilience, player.throwing, player.kicking, player.agility, player.catching))
-                self.player_tree.insert("", 'end', text=player.name, values=(4, 3, 3, 4, 3, 7, 8, 9, 7, 10), tags=("deselected"))
-                #self.player_tree.tag_configure("deselected", background="white")
-
+                # note that uuid is in the values but is not displayed in the treeview
+                self.player_tree.insert("", 'end', iid=player.uuid, text=player.name, values=(player.movement, player.attack, player.defense, player.strength, player.toughness, player.resilience, player.throwing, player.kicking, player.agility, player.catching), tags=("deselected"))
+ 
+        # display treeview and scrollbar
         self.player_tree.grid(row=1, column=0, columnspan=10)
+        self.scrollbar.grid(row=1, column=11, sticky='ns')
+        self.player_tree.configure(yscrollcommand=self.scrollbar.set)
 
         # Display key and OK button
         empty_row = tk.Label(self, bg='#9E332C')
@@ -77,8 +73,7 @@ class PickSquad(tk.Frame):
         
     def select_player(self, event):
         item = self.player_tree.identify('item', event.x, event.y)
-        print("clicked on ", self.player_tree.item(item, "text"))
-        print(self.player_tree.item(item, "tags"))
+        #print(self.player_tree.item(item, "values")[-1]) # where [-1] gets us the uuid
         if self.player_tree.item(item, "tags")[0] == 'deselected':
             self.player_tree.item(item, tags="selected")
         else:
@@ -89,10 +84,25 @@ class PickSquad(tk.Frame):
         self.player_tree.tag_configure("deselected", background='white', foreground='black')
 
     def validate_squad(self):
-        sels = self.player_tree.tag_has("selected")
-        print(len(sels))
+        if len(self.player_tree.tag_has("selected")) > 15:
+            messagebox.showerror("Too many selected", "You have selected more than 15 players for the match day squad. Please deselect some and try again")
+        elif len(self.player_tree.tag_has("selected")) < 15:
+            if (messagebox.askyesno("Too few selected", "You have selected fewer than 15 players for the match day squad. Is that right?")):
+                self.update_player_attributes()
+        else:
+            self.update_player_attributes()
+
+    def update_player_attributes(self):
+        selected_players = self.player_tree.tag_has("selected")
+        for uuid in selected_players:
+            config.game.update_player_playing_status(uuid, "squad")
+
+        config.game.continue_game()
+
+
 
 import classes.game
+import config
 
 
 '''
